@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<title>main page</title>
+{% endblock %}
+
+
+{% block body %}
+<h1>this is main page</h1>
+    {% if name == "new user" %}
+        <p>you are a new user</p>
+    {% else %}
+        <p>hello {{ name }}</p>
+    {% endif %}
+
+    <img src="{{ url_for('static',filename='image/image2.jpg') }}">
+
+
+    <form action="/add-order" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="text" placeholder="name" name="name">
+        <input type="email" placeholder="email" name="email">
+
+        <input type="submit" value="بفرست برهههه">
+    </form>
+
+
+
+    <section>
+        <h3>خبر نامه</h3>
+        <p>در خبر نامه ثبت نام کنید تا جدیدترین اخبار را در ایمیل خود داشته باشید</p>
+
+        <form action="/register" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" name="name" placeholder="اسم شما چیست ؟؟؟">
+            <input type="email" name="email" placeholder="ایمیل شما چیست ؟؟؟">
+            <input type="submit" value="ثبت نام">
+        </form>
+    </section>
+
+    <section>
+        {% for user in users %}
+            {{user.name}}  {{user.email}} {{ user.total_orders_count }}<br>
+        {% endfor %}
+    </section>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block header %}
+    <script src="{{ url_for( 'static', filename='flask_javascript.js' )}}"></script>
+    <link rel="shortcut icon" href="{{ url_for( 'static', filename='logo.ico' )}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='flask.css' )}}">
+{% endblock %}
+{% block body %}
+    {#<h2>comment jija2</h2>#}
+    <h1>this is  a main page</h1>
+    <p>this is a p</p>
+    {% if name == "matin" or name == "mohammad matin"%}
+    <p>welcom king user site {{name}}</p>
+    {%else%}
+    <p>welcom {{name}}</p>
+    {% endif %}
+    <img src="{{ url_for('static' , filename='nesh.png') }}" alt="error">
+    {% include 'include.html' %}
+    <form action="/register" method="POST">
+        <fieldset>
+            <legend>
+                My Form:
+            </legend>
+            <input placeholder="password" type="password" name="passwordf" id="password"><br>
+            <input type="text" placeholder="name" id="name" name="fname"><br>
+            <input placeholder="age" type="number" name="fage" id="number"><br>
+            <input type="image" src="{{ url_for('static' , filename='nesh.png') }}" alt="image submit" width="50px" height="50px">
+            <input type="submit" value="get_method" formmethod="GET" formaction="/register_get">
+        </fieldset>
+    </form>
+    <form action="register2" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>My form 2</legend>
+            <select name="select">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select><br>
+            <input type="radio" name=".radio." value="1">
+            <input type="radio" name=".radio." value="2">
+            <input type="radio" name=".radio." value="3">
+            <input type="radio" name=".radio." value="4">
+            <input type="radio" name=".radio." value="5"><br>
+            <input type="file" name="fileload"><br>
+            <input type="submit" value="submit">
+        </fieldset>
+    </form>
+    {%if login%}
+    <section>
+        {% for logins in login %}
+            {{logins.name}} :+:+: {{logins.age}} :+:+: {{logins.id}}<br>
+        {%endfor%}
+    </section>
+    <br>
+    <section>
+        {% for names in name %}
+            {%for name_s in names%}
+                _{{name_s}}
+            {%endfor%}
+            <br>
+        {%endfor%}
+    </section>
+    <br>
+    <section>
+        {% for names in name %}
+            {{names.id_login}}<br>
+        {%endfor%}
+    </section>
+    <br>
+    <!--make a for aboute age_avg-->
+    <section>
+        {% for age_avgs in age_avg %}
+            {{age_avgs[0]}}<br>
+        {%endfor%}
+    </section>
+    <hr>
+    <section>
+        {%for logins in login%}
+            {{logins.case}} +:+: {{logins.name}} +:+: {{logins.age}} 
+        {%endfor%}
+        __________
+            id:{{user.id}} age:{{user.age}} name:{{user.name}}
+        __________
+        {%for login_2 in login_2%}
+            phon = {{login_2.phon_user.phon}}  
+        {%endfor%}
+        __________
+        {%for unions in union%}
+            {{unions}}
+        {%endfor%}
+    </section>
+    {%endif%}
+    <hr>
+    {%for users in user%}
+        {{users.name}}  {{users.count_order_user}}<br>
+    {%endfor%}
+{% endblock %}

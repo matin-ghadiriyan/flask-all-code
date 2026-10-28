@@ -1,0 +1,93 @@
+    <style>
+        *{
+            background: linear-gradient(to right , darkblue , black , darkgreen);
+            color: red;
+        }
+    </style>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>My form login</legend>
+            <input type="text" name="name" placeholder="name">
+            <input type="submit" value="Enter">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        </fieldset>
+    </form>
+    <form action="flash" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>My form flash</legend>
+                {% with messages = get_flashed_messages(category_filter=['info'],with_categories=true) %}
+                    {%if messages%}
+                        {%for caregory,message in messages%}
+                            {{caregory}}<b>:</b>{{message}}<br>
+                        {%endfor%}
+                    {%endif%}
+                {%endwith%}
+            <input type="text" name="name" placeholder="name">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="submit" value="Enter">
+        </fieldset>
+    </form>
+    <form action="mysql_form" method="post">
+        <fieldset>
+            <legend>Mysql form</legend>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="name" name="user_name">
+            <input type="number" name="user_age" placeholder="age"><br>
+            <input type="submit" value="send to the server">
+        </fieldset>
+    </form>
+    <form action="mysql_ORM" method="post">
+        <fieldset>
+            <legend>Mysql ORM</legend>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="name" name="user_name">
+            <input type="number" name="user_age" placeholder="age"><br>
+            <input type="submit" value="send to the server">
+        </fieldset>
+    </form>
+    <form action="add-order" method="post">
+        <fieldset>
+            <legend>add order (one by eny)</legend>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="name" name="user_name">
+            <input type="number" name="user_age" placeholder="age"><br>
+            <input type="submit" value="send to the server">
+        </fieldset>
+    </form>
+    <form action="add-phon" method="post">
+        <fieldset>
+            <legend>add phon (one by one)</legend>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="name" name="user_name">
+            <input type="text" name="adress" placeholder="adress">
+            <input type="number" name="user_age" placeholder="phon"><br>
+            <input type="submit" value="send to the server">
+        </fieldset>
+    </form>
+    <form action='login-ORM' method="post">
+        <fieldset>
+            <legend>add login</legend>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="name" name="name">
+            <input type="number" name="age" placeholder="age"><br>
+            <input type="submit" value="send to the server">
+        </fieldset>
+    </form>
+    <form action='login_ORM_Updata' method="post">
+        <fieldset>
+            <legend>add login</legend>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="name Updata" name="name_in_sql">
+            <input type="number" name="age" placeholder="age"><br>
+            <input type="submit" value="send to the server">
+        </fieldset>
+    </form>
+    <form action="login-ORM-Delete" method="post">
+        <fieldset>
+            <legend>remove login</legend>
+            <input type="text" name="name" placeholder="name">
+            <input type="submit" value="send to the server">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        </fieldset>
+    </form>
